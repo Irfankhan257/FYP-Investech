@@ -7,7 +7,7 @@ export const AuthController = {
     async (req: Request, res: Response) => {
       try {
         const { email, password, name, phone, role, city, country } = req.body;
-        
+
         const signUpCredentials: SignUp = {
           email,
           password,
@@ -19,6 +19,34 @@ export const AuthController = {
         };
 
         const result = await AuthService.signUp(signUpCredentials);
+        return res.status(result.statusCode).send(result.data);
+      } catch (error) {
+        console.error(error);
+        return res.status(500).json({ message: "Server error" });
+      }
+    },
+  ],
+
+  InnovatorSignIn: [
+    async (req: Request, res: Response) => {
+      try {
+        const { email, password } = req.body;
+        const signInCredentials: SignIn = { email: email, password: password };
+        const result = await AuthService.InnovatorSignIn(signInCredentials);
+        return res.status(result.statusCode).send(result.data);
+      } catch (error) {
+        console.error(error);
+        return res.status(500).json({ message: "Server error" });
+      }
+    },
+  ],
+
+  InvestorSignIn: [
+    async (req: Request, res: Response) => {
+      try {
+        const { email, password } = req.body;
+        const signInCredentials: SignIn = { email: email, password: password };
+        const result = await AuthService.InvestorSignIn(signInCredentials);
         return res.status(result.statusCode).send(result.data);
       } catch (error) {
         console.error(error);
