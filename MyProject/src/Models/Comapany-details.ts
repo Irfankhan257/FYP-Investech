@@ -1,7 +1,7 @@
 import { Entity, Column, PrimaryGeneratedColumn } from "typeorm";
 
 @Entity()
-export class Innovator {
+export class Company {
   @PrimaryGeneratedColumn()
   id: number;
 
@@ -12,8 +12,8 @@ export class Innovator {
   email: string;
 
   @Column()
-  city: number;
+  city: string;
 
   @Column()
-  country: boolean;
+  country: string;
 }

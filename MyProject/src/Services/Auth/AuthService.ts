@@ -20,16 +20,16 @@ export const AuthService = {
 
       await AppDataSource.manager.save(newInnovator);
     } else {
-      const newInnovator = new Investor();
-      newInnovator.email = signUpCredentials.email;
-      newInnovator.role = signUpCredentials.role;
-      newInnovator.password = signUpCredentials.password;
-      newInnovator.name = signUpCredentials.name;
-      newInnovator.phone = signUpCredentials.phone;
-      newInnovator.city = signUpCredentials.city;
-      newInnovator.country = signUpCredentials.country;
+      const newInvestor = new Investor();
+      newInvestor.email = signUpCredentials.email;
+      newInvestor.role = signUpCredentials.role;
+      newInvestor.password = signUpCredentials.password;
+      newInvestor.name = signUpCredentials.name;
+      newInvestor.phone = signUpCredentials.phone;
+      newInvestor.city = signUpCredentials.city;
+      newInvestor.country = signUpCredentials.country;
 
-      await AppDataSource.manager.save(newInnovator);
+      await AppDataSource.manager.save(newInvestor);
     }
 
     return {
@@ -64,6 +64,8 @@ export const AuthService = {
 
   InvestorSignIn: async (signInCredentials: SignIn) => {
     const InvestorRepository = AppDataSource.getRepository(Investor);
+    console.log(signInCredentials);
+
     const fetchedUser = await InvestorRepository.findOneBy({
       email: signInCredentials.email,
       password: signInCredentials.password,

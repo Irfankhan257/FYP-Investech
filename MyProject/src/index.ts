@@ -4,6 +4,7 @@ import { json } from "body-parser";
 import express from "express";
 import { Investor } from "./Models/Investor";
 import { AuthRoute } from "./Routes/Auth/AuthRoute";
+import { CompanyRoute } from "./Routes/Comapany/CompanyRoute";
 
 const app = express();
 app.use(json({ limit: "5mb" }));
@@ -15,6 +16,7 @@ AppDataSource.initialize()
   .catch((error) => console.log(error));
 
 app.use("/auth", AuthRoute);
+app.use("/company", CompanyRoute);
 
 app.listen(3000, () => {
   console.log("The port is live on 3000");
