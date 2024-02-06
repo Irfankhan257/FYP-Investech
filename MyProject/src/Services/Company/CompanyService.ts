@@ -4,23 +4,39 @@ import { AppDataSource } from "../../data-source";
 
 export const CompanyService = {
   AddCompanyDetails: async (companyDetails: CompanyDetails) => {
+    if (companyDetails.userRole == "investor") {
+      const addCompanyDetail = new Company();
+      addCompanyDetail.companyName = companyDetails.companyName;
+      addCompanyDetail.email = companyDetails.email;
+      addCompanyDetail.city = companyDetails.city;
+      addCompanyDetail.country = companyDetails.country;
+      addCompanyDetail.investor = companyDetails.userId;
+      await AppDataSource.manager.save(addCompanyDetail);
 
-    const addCompanyDetail = new Company();
+      return {
+        statusCode: 201,
+        data: {
+          message: "Successfully created",
+        },
+      };
+    } else {
+      const addCompanyDetail = new Company();
+      addCompanyDetail.companyName = companyDetails.companyName;
+      addCompanyDetail.email = companyDetails.email;
+      addCompanyDetail.city = companyDetails.city;
+      addCompanyDetail.country = companyDetails.country;
+      addCompanyDetail.innovator = companyDetails.userId;
+      await AppDataSource.manager.save(addCompanyDetail);
 
-    addCompanyDetail.companyName = companyDetails.companyName;
-    addCompanyDetail.email = companyDetails.email;
-    addCompanyDetail.city = companyDetails.city;
-    addCompanyDetail.country = companyDetails.country;
-
-    await AppDataSource.manager.save(addCompanyDetail);
-
-     return {
-       statusCode: 201,
-       data: {
-         message: "Successfully created",
-       },
-     };
+      return {
+        statusCode: 201,
+        data: {
+          message: "Successfully created",
+        },
+      };
+    }
   },
+
 
   
 };

@@ -1,7 +1,14 @@
-import { Entity, Column, PrimaryGeneratedColumn, BaseEntity } from "typeorm";
+import {
+  Entity,
+  Column,
+  PrimaryGeneratedColumn,
+  OneToMany,
+  BaseEntity,
+} from "typeorm";
+import { Company } from "./Comapany-details";
 
 @Entity()
-export class Investor  {
+export class Investor {
   @PrimaryGeneratedColumn()
   id: number;
 
@@ -25,4 +32,7 @@ export class Investor  {
 
   @Column()
   country: string;
+
+  @OneToMany(() => Company, (company) => company.innovator)
+  company: Company[];
 }

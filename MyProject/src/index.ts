@@ -2,9 +2,9 @@ import "reflect-metadata";
 import { AppDataSource } from "./data-source";
 import { json } from "body-parser";
 import express from "express";
-import { Investor } from "./Models/Investor";
 import { AuthRoute } from "./Routes/Auth/AuthRoute";
 import { CompanyRoute } from "./Routes/Comapany/CompanyRoute";
+import { IdeasRoute } from "./Routes/Ideas/IdeasRoute";
 
 const app = express();
 app.use(json({ limit: "5mb" }));
@@ -17,6 +17,7 @@ AppDataSource.initialize()
 
 app.use("/auth", AuthRoute);
 app.use("/company", CompanyRoute);
+app.use("/ideas", IdeasRoute);
 
 app.listen(3000, () => {
   console.log("The port is live on 3000");

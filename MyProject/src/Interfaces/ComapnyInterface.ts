@@ -3,5 +3,6 @@ export interface CompanyDetails {
   email: string;
   city: string;
   country: string;
-  userEmail: string;
+  userId: number;
+  userRole: string;
 }

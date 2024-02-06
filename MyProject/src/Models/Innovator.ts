@@ -1,4 +1,12 @@
-import { Entity, Column, PrimaryGeneratedColumn, BaseEntity } from "typeorm";
+import {
+  Entity,
+  Column,
+  PrimaryGeneratedColumn,
+  BaseEntity,
+  OneToMany,
+} from "typeorm";
+import { Company } from "./Comapany-details";
+import { Ideas } from "./Ideas";
 
 @Entity()
 export class Innovator {
@@ -25,4 +33,10 @@ export class Innovator {
 
   @Column()
   country: string;
+
+  @OneToMany(() => Company, (company) => company.innovator)
+  company: Company[];
+
+  @OneToMany(() => Ideas, (ideas) => ideas.innovator)
+  ideas: Ideas[];
 }

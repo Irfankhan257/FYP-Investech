@@ -1,4 +1,6 @@
-import { Entity, Column, PrimaryGeneratedColumn } from "typeorm";
+import { Entity, Column, PrimaryGeneratedColumn, ManyToOne } from "typeorm";
+import { Innovator } from "./Innovator";
+import { Investor } from "./Investor";
 
 @Entity()
 export class Company {
@@ -16,4 +18,12 @@ export class Company {
 
   @Column()
   country: string;
+
+  @ManyToOne(() => Innovator, (innovator) => innovator.company, {
+    nullable: true,
+  })
+  innovator: number | null;
+
+  @ManyToOne(() => Investor, (investor) => investor.company, { nullable: true })
+  investor: number | null;
 }

@@ -64,14 +64,11 @@ export const AuthService = {
 
   InvestorSignIn: async (signInCredentials: SignIn) => {
     const InvestorRepository = AppDataSource.getRepository(Investor);
-    console.log(signInCredentials);
 
     const fetchedUser = await InvestorRepository.findOneBy({
       email: signInCredentials.email,
       password: signInCredentials.password,
     });
-
-    console.log("test", fetchedUser);
 
     return {
       statusCode: 201,
