@@ -4,6 +4,7 @@ import { Innovator } from "./Models/Innovator";
 import { Investor } from "./Models/Investor";
 import { Company } from "./Models/Comapany-details";
 import { Ideas } from "./Models/Ideas";
+import { Ratings } from "./Models/Rating";
 
 export const AppDataSource = new DataSource({
   type: "postgres",
@@ -14,7 +15,7 @@ export const AppDataSource = new DataSource({
   database: "postgres",
   synchronize: true,
   logging: false,
-  entities: [Innovator, Investor, Company, Ideas],
+  entities: [Innovator, Investor, Company, Ideas, Ratings],
   migrations: ["migrations/**/*.ts"],
   subscribers: [],
 });

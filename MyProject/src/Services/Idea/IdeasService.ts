@@ -5,12 +5,11 @@ import { AppDataSource } from "../../data-source";
 
 export const IdeaService = {
   AddNewIdea: async (ideaDetails: ideas) => {
+    const InnovaterRepository = AppDataSource.getRepository(Innovator);
 
-    const existingUser = await AppDataSource.getRepository(Innovator).findOneBy(
-      {
-        id: ideaDetails.userId,
-      }
-    );
+    const existingUser = await InnovaterRepository.findOneBy({
+      id: ideaDetails.userId,
+    });
 
     if (!existingUser) {
       return {
