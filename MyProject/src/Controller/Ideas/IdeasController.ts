@@ -20,4 +20,16 @@ export const IdeaController = {
       }
     },
   ],
+
+  getAllIdeas: [
+    async (req: Request, res: Response) => {
+      try {
+        const result = await IdeaService.getAllIdeas();
+        return res.status(result.statusCode).send(result.data);
+      } catch (error) {
+        console.error(error);
+        return res.status(500).json({ message: "Server error" });
+      }
+    },
+  ],
 };

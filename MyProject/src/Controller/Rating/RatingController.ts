@@ -21,10 +21,11 @@ export const RatingController = {
 
   FetchUserRatings: async (req: Request, res: Response) => {
     try {
-      const { id, role } = req.body;
+      let id = +req.query.id;
+      let role = req.query.role as string;
       const userRating: RatingId = {
         id: id,
-        role: role
+        role: role,
       };
       const result = await RatingService.FetchUserRating(userRating);
       return res.status(result.statusCode).send(result.data);

@@ -5,9 +5,9 @@ import { AppDataSource } from "../../data-source";
 
 export const IdeaService = {
   AddNewIdea: async (ideaDetails: ideas) => {
-    const InnovaterRepository = AppDataSource.getRepository(Innovator);
+    const innovaterRepository = AppDataSource.getRepository(Innovator);
 
-    const existingUser = await InnovaterRepository.findOneBy({
+    const existingUser = await innovaterRepository.findOneBy({
       id: ideaDetails.userId,
     });
 
@@ -30,6 +30,24 @@ export const IdeaService = {
       statusCode: 201,
       data: {
         message: "Successfully created",
+      },
+    };
+  },
+
+  getAllIdeas: async () => {
+    const ideasRepository = AppDataSource.getRepository(Ideas);
+
+    const totalIdeas = await ideasRepository.find({
+      order: {
+        ideaTitle: "ASC",
+        id: "DESC",
+      },
+    });
+
+    return {
+      statusCode: 201,
+      data: {
+        allIdeas: totalIdeas,
       },
     };
   },

@@ -58,8 +58,7 @@ export const RatingService = {
   },
 
   FetchUserRating: async (userRating: RatingId) => {
-    const innovaterRepository = AppDataSource.getRepository(Innovator);
-    const investorRepository = AppDataSource.getRepository(Investor);
+    
     const ratingRepository = AppDataSource.getRepository(Ratings);
 
     if (userRating.role === "innovator") {
@@ -92,7 +91,8 @@ export const RatingService = {
       return {
         statusCode: 201,
         data: {
-          message: "Rating innovator",
+          id: userRating.id,
+          overAllRating: averageRating,
         },
       };
     }
@@ -126,7 +126,8 @@ export const RatingService = {
     return {
       statusCode: 201,
       data: {
-        message: "Rating investor",
+        id: userRating.id,
+        overAllRating: averageRating,
       },
     };
   },
