@@ -21,8 +21,8 @@ export const RatingController = {
 
   FetchUserRatings: async (req: Request, res: Response) => {
     try {
-      let id = +req.param.id;
-      let role = req.param.role as string;
+      let id = +req.params.id;
+      let role = req.params.role as string;
       const userRating: RatingId = {
         id: id,
         role: role,
