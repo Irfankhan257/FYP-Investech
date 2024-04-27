@@ -8,11 +8,12 @@ import { Ratings } from "./Models/Rating";
 
 export const AppDataSource = new DataSource({
   type: "postgres",
-  host: "localhost",
-  port: 5432,
-  username: "postgres",
-  password: "test123",
-  database: "postgres",
+  // host: "postgres://dxtpffbm:yYJnao1Kwu6xumNVxYFDem3yjoK5usls@rain.db.elephantsql.com/dxtpffbm",
+  // port: 5432,
+  // username: "dxtpffbm",
+  // password: "yYJnao1Kwu6xumNVxYFDem3yjoK5usls",
+  // database: "dxtpffbm",
+  url: "postgres://dxtpffbm:yYJnao1Kwu6xumNVxYFDem3yjoK5usls@rain.db.elephantsql.com/dxtpffbm",
   synchronize: true,
   logging: false,
   entities: [Innovator, Investor, Company, Ideas, Ratings],
