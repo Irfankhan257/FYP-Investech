@@ -18,6 +18,9 @@ export class Ideas {
   @Column()
   ideaDescription: string;
 
+  @Column()
+  ideaTag: string;
+
   @CreateDateColumn({ name: "created_at" })
   createdAt: Date;
 
