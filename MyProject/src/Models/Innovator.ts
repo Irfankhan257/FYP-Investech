@@ -7,6 +7,7 @@ import {
 } from "typeorm";
 import { Company } from "./Comapany-details";
 import { Ideas } from "./Ideas";
+import { Ratings } from "./Rating";
 
 @Entity()
 export class Innovator {
@@ -33,6 +34,9 @@ export class Innovator {
 
   @Column()
   country: string;
+
+  @OneToMany(() => Ratings, (ratings) => ratings.innovator)
+  innovator: Ratings[];
 
   @OneToMany(() => Company, (company) => company.innovator)
   company: Company[];

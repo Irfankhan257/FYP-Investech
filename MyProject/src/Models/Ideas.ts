@@ -1,3 +1,4 @@
+import { Tags } from "./Tags";
 import {
   Entity,
   Column,
@@ -18,12 +19,12 @@ export class Ideas {
   @Column()
   ideaDescription: string;
 
-  @Column()
-  ideaTag: string;
-
   @CreateDateColumn({ name: "created_at" })
   createdAt: Date;
 
   @ManyToOne(() => Innovator, (innovator) => innovator.ideas)
   innovator: number | null;
+
+  @ManyToOne(() => Tags, (tags) => tags.ideas)
+  ideaTag: number | null;
 }

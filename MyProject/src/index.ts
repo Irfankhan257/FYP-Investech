@@ -6,6 +6,7 @@ import { AuthRoute } from "./Routes/Auth/AuthRoute";
 import { CompanyRoute } from "./Routes/Comapany/CompanyRoute";
 import { IdeasRoute } from "./Routes/Ideas/IdeasRoute";
 import { RatingRoute } from "./Routes/Rating/RatingRoute";
+import { TagRouter } from "./Routes/Tag/TagRoutes";
 
 const app = express();
 app.use(json({ limit: "5mb" }));
@@ -20,6 +21,7 @@ app.use("/auth", AuthRoute);
 app.use("/company", CompanyRoute);
 app.use("/ideas", IdeasRoute);
 app.use("/rating", RatingRoute);
+app.use("/tags", TagRouter)
 
 app.listen(3000, () => {
   console.log("The port is live on 3000");

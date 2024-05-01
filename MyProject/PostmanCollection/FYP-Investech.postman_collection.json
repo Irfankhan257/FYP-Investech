@@ -1,0 +1,190 @@
+{
+	"info": {
+		"_postman_id": "00c98954-6b8f-4e16-b6e8-f0f5cc51f030",
+		"name": "FYP-Investech",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json",
+		"_exporter_id": "22805227"
+	},
+	"item": [
+		{
+			"name": "Auth",
+			"item": [
+				{
+					"name": "SignUp",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\": \"irfan@gmail.com\",\r\n    \"password\": \"Abc123$%^\",\r\n    \"role\":\"innovator\",\r\n    \"name\": \"alien\", \r\n    \"city\": \"Karachi\",  \r\n    \"phone\": 1031231231,\r\n    \"country\": \"Pakistan\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "http://localhost:3000/auth/signup"
+					},
+					"response": []
+				},
+				{
+					"name": "InnovatorSignIn",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\" : \"irfan@gmail.com\",\r\n    \"password\": \"Abc123$%^\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "http://localhost:3000/auth/innovatorsignin"
+					},
+					"response": []
+				},
+				{
+					"name": "InvestorSignIn",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\" : \"irfankhan@gmail.com\",\r\n    \"password\": \"Abc123$%^\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "http://localhost:3000/auth/investorsignin"
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Company",
+			"item": [
+				{
+					"name": "addcompany",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\":\"test@gmail.com\",\r\n    \"companyName\" : \"Something\",\r\n    \"city\" : \"Something\",\r\n    \"country\" : \"Something\",\r\n    \"userId\" : \"1\",\r\n    \"userRole\": \"investor\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "http://localhost:3000/company/addcompany"
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Ideas",
+			"item": [
+				{
+					"name": "AddNewIdea",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"title\": \"Something\",\r\n    \"description\": \"Something\",\r\n    \"userId\" : 1\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "http://localhost:3000/ideas/addnewidea"
+					},
+					"response": []
+				},
+				{
+					"name": "getAllideas",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": "http://localhost:3000/ideas/getallideas"
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Ratings",
+			"item": [
+				{
+					"name": "userRating",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"id\" : 1,\r\n    \"rating\" : 1,\r\n    \"role\" : \"innovator\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "http://localhost:3000/rating/userrating"
+					},
+					"response": []
+				},
+				{
+					"name": "fetchUserRating",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/rating/fetchrating?id=1&role=investor",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"rating",
+								"fetchrating"
+							],
+							"query": [
+								{
+									"key": "id",
+									"value": "1"
+								},
+								{
+									"key": "role",
+									"value": "investor"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Tags",
+			"item": [
+				{
+					"name": "fetchTags",
+					"request": {
+						"method": "GET",
+						"header": []
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
