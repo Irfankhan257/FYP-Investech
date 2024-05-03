@@ -1,3 +1,4 @@
+import { log } from "console";
 import { Rating, RatingId } from "../../Interfaces/RatingInterface";
 import { Innovator } from "../../Models/Innovator";
 import { Investor } from "../../Models/Investor";
@@ -6,6 +7,7 @@ import { AppDataSource } from "../../data-source";
 
 export const RatingService = {
   SaveUserRating: async (userRating: Rating) => {
+    const ratingRepository = AppDataSource.getRepository(Ratings);
     const innovaterRepository = AppDataSource.getRepository(Innovator);
     const investorRepository = AppDataSource.getRepository(Investor);
 
@@ -14,6 +16,8 @@ export const RatingService = {
         id: userRating.id,
       });
 
+      console.log("innovaterRating", innovaterRating);
+
       if (!innovaterRating) {
         return {
           statusCode: 400,
@@ -21,7 +25,8 @@ export const RatingService = {
         };
       }
       const addUserRating = new Ratings();
-      addUserRating.innovator.id = userRating.id;
+      console.log(addUserRating);
+      addUserRating.innovator = innovaterRating;
       addUserRating.rating = userRating.rating;
       await AppDataSource.manager.save(addUserRating);
 
@@ -44,7 +49,7 @@ export const RatingService = {
       };
     }
     const addUserRating = new Ratings();
-    addUserRating.investor.id = userRating.id;
+    addUserRating.innovator.id = userRating.id;
     addUserRating.rating = userRating.rating;
 
     await AppDataSource.manager.save(addUserRating);
@@ -58,7 +63,6 @@ export const RatingService = {
   },
 
   FetchUserRating: async (userRating: RatingId) => {
-    
     const ratingRepository = AppDataSource.getRepository(Ratings);
 
     if (userRating.role === "innovator") {
@@ -70,6 +74,13 @@ export const RatingService = {
         return rating.innovator && rating.innovator.id === userRating.id;
       });
 
+      if (!filteredRatings || filteredRatings.length === 0) {
+        return {
+          statusCode: 400,
+          data: { message: "No ratings found for this user." },
+        };
+      }
+
       const totalRatings = filteredRatings.length;
 
       const sumOfRatings = filteredRatings.reduce(
@@ -78,8 +89,6 @@ export const RatingService = {
       );
 
       const averageRating = totalRatings > 0 ? sumOfRatings / totalRatings : 0;
-
-      console.log("avg rating", averageRating);
 
       if (!innovaterRating) {
         return {

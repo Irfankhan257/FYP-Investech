@@ -36,7 +36,8 @@ export class Innovator {
   country: string;
 
   @OneToMany(() => Ratings, (ratings) => ratings.innovator)
-  innovator: Ratings[];
+  innovatorRating: Ratings[];
+  
 
   @OneToMany(() => Company, (company) => company.innovator)
   company: Company[];

@@ -6,6 +6,7 @@ import {
   BaseEntity,
 } from "typeorm";
 import { Company } from "./Comapany-details";
+import { Ratings } from "./Rating";
 
 @Entity()
 export class Investor {
@@ -35,4 +36,7 @@ export class Investor {
 
   @OneToMany(() => Company, (company) => company.innovator)
   company: Company[];
+
+  @OneToMany(() => Ratings, (ratings) => ratings.investor)
+  investorRating: Ratings[];
 }

@@ -10,11 +10,13 @@ export class Ratings {
   @Column()
   rating: number;
 
-  @ManyToOne(() => Innovator, (innovator) => innovator.company, {
+  @ManyToOne(() => Innovator, (innovator) => innovator.innovatorRating, {
     nullable: true,
   })
   innovator: Innovator | null;
 
-  @ManyToOne(() => Investor, (investor) => investor.company, { nullable: true })
+  @ManyToOne(() => Investor, (investor) => investor.investorRating, {
+    nullable: true,
+  })
   investor: Investor | null;
 }
