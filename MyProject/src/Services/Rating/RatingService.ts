@@ -25,7 +25,6 @@ export const RatingService = {
         };
       }
       const addUserRating = new Ratings();
-      console.log(addUserRating);
       addUserRating.innovator = innovaterRating;
       addUserRating.rating = userRating.rating;
       await AppDataSource.manager.save(addUserRating);
@@ -49,7 +48,7 @@ export const RatingService = {
       };
     }
     const addUserRating = new Ratings();
-    addUserRating.innovator.id = userRating.id;
+    addUserRating.investor = investorRating;
     addUserRating.rating = userRating.rating;
 
     await AppDataSource.manager.save(addUserRating);
