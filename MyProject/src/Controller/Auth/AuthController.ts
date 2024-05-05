@@ -1,5 +1,5 @@
 import { Request, Response } from "express";
-import { SignIn, SignUp } from "../../Interfaces/AuthInterface";
+import { SignIn, SignUp, UserEdit } from "../../Interfaces/AuthInterface";
 import { AuthService } from "../../Services/Auth/AuthService";
 
 export const AuthController = {
@@ -19,6 +19,31 @@ export const AuthController = {
         };
 
         const result = await AuthService.signUp(signUpCredentials);
+        return res.status(result.statusCode).send(result.data);
+      } catch (error) {
+        console.error(error);
+        return res.status(500).json({ message: "Server error" });
+      }
+    },
+  ],
+
+  editUserInfo: [
+    async (req: Request, res: Response) => {
+      try {
+        const {id,email, password, name, phone, role, city, country } = req.body;
+
+        const editUserInfo: UserEdit = {
+          id,
+          email,
+          password,
+          name,
+          phone,
+          role,
+          country,
+          city,
+        };
+
+        const result = await AuthService.editUser(editUserInfo);
         return res.status(result.statusCode).send(result.data);
       } catch (error) {
         console.error(error);

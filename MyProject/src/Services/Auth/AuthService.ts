@@ -1,4 +1,4 @@
-import { SignIn } from "./../../Interfaces/AuthInterface";
+import { SignIn, UserEdit } from "./../../Interfaces/AuthInterface";
 import { Innovator } from "./../../Models/Innovator";
 import { SignUp } from "../../Interfaces/AuthInterface";
 import { AppDataSource } from "../../data-source";
@@ -36,6 +36,43 @@ export const AuthService = {
       statusCode: 201,
       data: {
         message: "Successfully created",
+      },
+    };
+  },
+  
+  editUser: async (updatedUserInfo: UserEdit) => {
+    const investorRepository = AppDataSource.getRepository(Investor);
+    const innovatorRepository = AppDataSource.getRepository(Innovator);
+
+    const user = await (updatedUserInfo.role === "investor"
+      ? investorRepository.findOneBy({ id: updatedUserInfo.id })
+      : innovatorRepository.findOneBy({ id: updatedUserInfo.id }));
+
+    if (!user) {
+      return {
+        statusCode: 404,
+        data: {
+          message: "User not found",
+        },
+      };
+    }
+
+    user.email = updatedUserInfo.email || user.email;
+    user.password = updatedUserInfo.password || user.password;
+    user.name = updatedUserInfo.name || user.name;
+    user.phone = updatedUserInfo.phone || user.phone;
+    user.city = updatedUserInfo.city || user.city;
+    user.country = updatedUserInfo.country || user.country;
+
+    await (updatedUserInfo.role === "investor"
+      ? investorRepository.save(user)
+      : innovatorRepository.save(user));
+
+    return {
+      statusCode: 200,
+      data: {
+        message: "User information updated successfully",
+        user: user, 
       },
     };
   },

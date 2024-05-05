@@ -12,3 +12,15 @@ export interface SignUp {
   city: string;
   country: string;
 }
+
+
+export interface UserEdit {
+  id: number,
+  email: string;
+  role: string;
+  password: any;
+  phone: string;
+  name: string;
+  city: string;
+  country: string;
+}
