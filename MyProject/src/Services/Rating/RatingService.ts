@@ -70,7 +70,11 @@ export const RatingService = {
       });
 
       const filteredRatings = innovaterRating.filter((rating) => {
-        return rating.innovator && rating.innovator.id === userRating.id;
+        return (
+          rating.innovator &&
+          rating.innovator.id &&
+          rating.innovator.id == userRating.id
+        );
       });
 
       if (!filteredRatings || filteredRatings.length === 0) {
@@ -110,7 +114,11 @@ export const RatingService = {
     });
 
     const filteredRatings = investorRating.filter((rating) => {
-      return rating.investor && rating.investor.id === userRating.id;
+      return (
+        rating.investor &&
+        rating.investor.id &&
+        rating.investor.id == userRating.id
+      );
     });
 
     const totalRatings = filteredRatings.length;

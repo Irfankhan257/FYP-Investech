@@ -2,7 +2,7 @@
 	"info": {
 		"_postman_id": "00c98954-6b8f-4e16-b6e8-f0f5cc51f030",
 		"name": "FYP-Investech",
-		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
 		"_exporter_id": "22805227"
 	},
 	"item": [
@@ -23,7 +23,18 @@
 								}
 							}
 						},
-						"url": "http://localhost:3000/auth/signup"
+						"url": {
+							"raw": "http://localhost:3000/auth/signup",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"auth",
+								"signup"
+							]
+						}
 					},
 					"response": []
 				},
@@ -41,7 +52,18 @@
 								}
 							}
 						},
-						"url": "http://localhost:3000/auth/innovatorsignin"
+						"url": {
+							"raw": "http://localhost:3000/auth/innovatorsignin",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"auth",
+								"innovatorsignin"
+							]
+						}
 					},
 					"response": []
 				},
@@ -59,7 +81,47 @@
 								}
 							}
 						},
-						"url": "http://localhost:3000/auth/investorsignin"
+						"url": {
+							"raw": "http://localhost:3000/auth/investorsignin",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"auth",
+								"investorsignin"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "edituserinfo",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"id\": \"1\",\r\n    \"email\": \"irfan@gmail.com\",\r\n    \"password\": \"Abc123$%^\",\r\n    \"role\":\"innovator\",\r\n    \"name\": \"alien\", \r\n    \"city\": \"Karachi\",  \r\n    \"phone\": 1031231231,\r\n    \"country\": \"Pakistan\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/auth/edituserinfo",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"auth",
+								"edituserinfo"
+							]
+						}
 					},
 					"response": []
 				}
@@ -82,7 +144,47 @@
 								}
 							}
 						},
-						"url": "http://localhost:3000/company/addcompany"
+						"url": {
+							"raw": "http://localhost:3000/company/addcompany",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"company",
+								"addcompany"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "editCompany",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"id\":\"3\",\r\n    \"email\":\"test@gmail.com\",\r\n    \"companyName\" : \"Something\",\r\n    \"city\" : \"Something\",\r\n    \"country\" : \"Something\",\r\n    \"userId\" : \"1\",\r\n    \"userRole\": \"investor\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/company/editcompany",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"company",
+								"editcompany"
+							]
+						}
 					},
 					"response": []
 				}
@@ -105,7 +207,18 @@
 								}
 							}
 						},
-						"url": "http://localhost:3000/ideas/addnewidea"
+						"url": {
+							"raw": "http://localhost:3000/ideas/addnewidea",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"ideas",
+								"addnewidea"
+							]
+						}
 					},
 					"response": []
 				},
@@ -114,7 +227,18 @@
 					"request": {
 						"method": "GET",
 						"header": [],
-						"url": "http://localhost:3000/ideas/getallideas"
+						"url": {
+							"raw": "http://localhost:3000/ideas/getallideas",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"ideas",
+								"getallideas"
+							]
+						}
 					},
 					"response": []
 				}
@@ -137,7 +261,18 @@
 								}
 							}
 						},
-						"url": "http://localhost:3000/rating/userrating"
+						"url": {
+							"raw": "http://localhost:3000/rating/userrating",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"rating",
+								"userrating"
+							]
+						}
 					},
 					"response": []
 				},
@@ -181,6 +316,40 @@
 					"request": {
 						"method": "GET",
 						"header": []
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "AskAi",
+			"item": [
+				{
+					"name": "askai",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"dataPrompt\": \"Hi, tell me about einstien\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/ai/askai",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"ai",
+								"askai"
+							]
+						}
 					},
 					"response": []
 				}
