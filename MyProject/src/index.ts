@@ -1,3 +1,4 @@
+import cors  from 'cors';
 import "reflect-metadata";
 import { AppDataSource } from "./data-source";
 import { json } from "body-parser";
@@ -11,6 +12,8 @@ import { AiRouter } from "./Routes/AiAssistance/AiAssistance";
 
 const app = express();
 app.use(json({ limit: "5mb" }));
+
+app.use(cors());
 
 AppDataSource.initialize()
   .then(async () => {

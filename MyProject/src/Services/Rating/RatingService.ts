@@ -130,8 +130,6 @@ export const RatingService = {
 
     const averageRating = totalRatings > 0 ? sumOfRatings / totalRatings : 0;
 
-    console.log(averageRating);
-
     if (!investorRating) {
       return {
         statusCode: 400,
