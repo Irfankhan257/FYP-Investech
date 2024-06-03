@@ -39,7 +39,32 @@ export const AuthService = {
       },
     };
   },
-  
+
+  getUserById: async (id: number, role: string) => {
+    const repository =
+      role === "investor"
+        ? AppDataSource.getRepository(Investor)
+        : AppDataSource.getRepository(Innovator);
+
+    const user = await repository.findOne({
+      where: { id },
+    });
+
+    if (!user) {
+      return {
+        statusCode: 404,
+        data: {
+          message: "User not found",
+        },
+      };
+    }
+
+    return {
+      statusCode: 200,
+      data: user,
+    };
+  },
+
   editUser: async (updatedUserInfo: UserEdit) => {
     const investorRepository = AppDataSource.getRepository(Investor);
     const innovatorRepository = AppDataSource.getRepository(Innovator);
@@ -72,7 +97,7 @@ export const AuthService = {
       statusCode: 200,
       data: {
         message: "User information updated successfully",
-        user: user, 
+        user: user,
       },
     };
   },

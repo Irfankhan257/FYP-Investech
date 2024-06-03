@@ -30,7 +30,8 @@ export const AuthController = {
   editUserInfo: [
     async (req: Request, res: Response) => {
       try {
-        const {id,email, password, name, phone, role, city, country } = req.body;
+        const { id, email, password, name, phone, role, city, country } =
+          req.body;
 
         const editUserInfo: UserEdit = {
           id,
@@ -49,6 +50,26 @@ export const AuthController = {
         console.error(error);
         return res.status(500).json({ message: "Server error" });
       }
+    },
+  ],
+
+  getUserInfo: [
+    async (req: Request, res: Response) => {
+      const { id, role } = req.query;
+
+      const userId = parseInt(id as string, 10);
+      if (isNaN(userId)) {
+        return res.status(400).json({
+          statusCode: 400,
+          data: {
+            message: "Invalid user ID",
+          },
+        });
+      }
+
+      const result = await AuthService.getUserById(userId, role as string);
+
+      return res.status(result.statusCode).json(result);
     },
   ],
 

@@ -38,6 +38,7 @@ export const IdeaService = {
     const ideasRepository = AppDataSource.getRepository(Ideas);
 
     const totalIdeas = await ideasRepository.find({
+      relations: ["ideaTag", "innovator"],
       order: {
         ideaTitle: "ASC",
         id: "DESC",
