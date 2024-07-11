@@ -28,6 +28,6 @@ app.use("/rating", RatingRoute);
 app.use("/tags", TagRouter)
 app.use("/ai", AiRouter);
 
-app.listen(3000, () => {
+app.listen(8080, () => {
   console.log("The port is live on 3000");
 });
