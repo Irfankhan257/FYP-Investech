@@ -7,7 +7,7 @@ export class Ratings {
   @PrimaryGeneratedColumn()
   id: number;
 
-  @Column()
+  @Column({ default: 0 })
   rating: number;
 
   @ManyToOne(() => Innovator, (innovator) => innovator.innovatorRating, {
