@@ -14,7 +14,13 @@ const app = express();
 const port = process.env.PORT || 8080;
 app.use(json({ limit: "5mb" }));
 
-app.use(cors());
+const corsOptions = {
+  origin: "*", 
+  methods: "GET,HEAD,PUT,PATCH,POST,DELETE", 
+};
+
+app.use(cors(corsOptions));
+
 
 AppDataSource.initialize()
   .then(async () => {
