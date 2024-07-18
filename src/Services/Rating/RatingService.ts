@@ -79,8 +79,12 @@ export const RatingService = {
 
       if (!filteredRatings || filteredRatings.length === 0) {
         return {
-          statusCode: 400,
-          data: { message: "No ratings found for this user." },
+          statusCode: 200,
+          data: {
+            message: "No ratings found for this user.",
+            id: userRating.id,
+            overAllRating: 0,
+          },
         };
       }
 
