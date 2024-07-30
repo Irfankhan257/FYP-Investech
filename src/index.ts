@@ -9,6 +9,7 @@ import { IdeasRoute } from "./Routes/Ideas/IdeasRoute";
 import { RatingRoute } from "./Routes/Rating/RatingRoute";
 import { TagRouter } from "./Routes/Tag/TagRoutes";
 import { AiRouter } from "./Routes/AiAssistance/AiAssistance";
+import { emailRouter } from "./Routes/Email/EmailRoute";
 
 const app = express();
 const port = process.env.PORT || 8080;
@@ -34,6 +35,7 @@ app.use("/ideas", IdeasRoute);
 app.use("/rating", RatingRoute);
 app.use("/tags", TagRouter);
 app.use("/ai", AiRouter);
+app.use("/email", emailRouter);
 
 app.listen(port, () => {
   console.log("The port is live on 8080");

@@ -52,4 +52,37 @@ export const IdeaService = {
       },
     };
   },
+
+  getIdeasByInnovatorId: async (innovatorId: number) => {
+    console.log("innovatorId", innovatorId);
+    const ideasRepository = AppDataSource.getRepository(Ideas);
+
+    const innovatorRepository = AppDataSource.getRepository(Innovator);
+    const existingInnovator = await innovatorRepository.findOneBy({
+      id: innovatorId,
+    });
+
+    if (!existingInnovator) {
+      return {
+        statusCode: 404,
+        data: { message: "Innovator not found." },
+      };
+    }
+
+    const ideasByInnovator = await ideasRepository.find({
+      where: { innovator: innovatorId },
+      relations: ["ideaTag", "innovator"],
+      order: {
+        ideaTitle: "ASC",
+        id: "DESC",
+      },
+    });
+
+    return {
+      statusCode: 200,
+      data: {
+        innovatorIdeas: ideasByInnovator,
+      },
+    };
+  },
 };

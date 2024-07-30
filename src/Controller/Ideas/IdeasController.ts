@@ -32,4 +32,23 @@ export const IdeaController = {
       }
     },
   ],
+
+  getIdeasByInnovatorId: [
+    async (req: Request, res: Response) => {
+      try {
+        const { innovatorId } = req.query;
+        const userId = parseInt(innovatorId as string, 10);
+
+        if (isNaN(userId)) {
+          return res.status(400).json({ message: "Invalid innovator ID" });
+        }
+
+        const result = await IdeaService.getIdeasByInnovatorId(userId);
+        return res.status(result.statusCode).send(result.data);
+      } catch (error) {
+        console.error(error);
+        return res.status(500).json({ message: "Server error" });
+      }
+    },
+  ],
 };

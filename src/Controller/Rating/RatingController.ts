@@ -22,8 +22,6 @@ export const RatingController = {
   FetchUserRatings: async (req: Request, res: Response) => {
   try {
     const { id, role } = req.body;  
-
-    // Ensure id is a number
     const userId = parseInt(id as string, 10);
     if (isNaN(userId)) {
       return res.status(400).json({
