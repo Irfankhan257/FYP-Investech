@@ -15,7 +15,7 @@ export interface SignUp {
 
 
 export interface UserEdit {
-  id: number,
+  id: number;
   email: string;
   role: string;
   password: any;
@@ -23,4 +23,5 @@ export interface UserEdit {
   name: string;
   city: string;
   country: string;
+  generalInfo: string;
 }

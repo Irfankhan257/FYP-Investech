@@ -30,8 +30,17 @@ export const AuthController = {
   editUserInfo: [
     async (req: Request, res: Response) => {
       try {
-        const { id, email, password, name, phone, role, city, country } =
-          req.body;
+        const {
+          id,
+          email,
+          password,
+          name,
+          phone,
+          role,
+          city,
+          country,
+          generalInfo,
+        } = req.body;
 
         const editUserInfo: UserEdit = {
           id,
@@ -42,6 +51,7 @@ export const AuthController = {
           role,
           country,
           city,
+          generalInfo,
         };
 
         const result = await AuthService.editUser(editUserInfo);

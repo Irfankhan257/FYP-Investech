@@ -26,6 +26,9 @@ export class Innovator {
   @Column()
   password: string;
 
+  @Column({ default: null })
+  generalInfo: string;
+
   @Column()
   city: string;
 
@@ -37,7 +40,6 @@ export class Innovator {
 
   @OneToMany(() => Ratings, (ratings) => ratings.innovator)
   innovatorRating: Ratings[];
-  
 
   @OneToMany(() => Company, (company) => company.innovator)
   company: Company[];

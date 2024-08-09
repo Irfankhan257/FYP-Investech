@@ -1,3 +1,4 @@
+import { Equal } from "typeorm";
 import { ideas } from "../../Interfaces/IdeasInterface";
 import { Ideas } from "../../Models/Ideas";
 import { Innovator } from "../../Models/Innovator";
@@ -23,6 +24,7 @@ export const IdeaService = {
     addNewIdeaDetail.ideaTitle = ideaDetails.title;
     addNewIdeaDetail.ideaDescription = ideaDetails.description;
     addNewIdeaDetail.innovator = ideaDetails.userId;
+    addNewIdeaDetail.ideaTag = ideaDetails.ideaTagId;
 
     await AppDataSource.manager.save(addNewIdeaDetail);
 
@@ -70,7 +72,9 @@ export const IdeaService = {
     }
 
     const ideasByInnovator = await ideasRepository.find({
-      where: { innovator: innovatorId },
+      where: {
+        innovator: Equal(innovatorId),
+      },
       relations: ["ideaTag", "innovator"],
       order: {
         ideaTitle: "ASC",
@@ -82,6 +86,39 @@ export const IdeaService = {
       statusCode: 200,
       data: {
         innovatorIdeas: ideasByInnovator,
+      },
+    };
+  },
+
+  searchIdeas: async (searchTerm: string, tagId?: number) => {
+    const ideasRepository = AppDataSource.getRepository(Ideas);
+
+    const query = ideasRepository
+      .createQueryBuilder("ideas")
+      .leftJoinAndSelect("ideas.ideaTag", "ideaTag")
+      .leftJoinAndSelect("ideas.innovator", "innovator");
+
+    if (searchTerm) {
+      query.andWhere(
+        "ideas.ideaTitle LIKE :searchTerm OR ideas.ideaDescription LIKE :searchTerm",
+        {
+          searchTerm: `%${searchTerm}%`,
+        }
+      );
+    }
+
+    if (tagId) {
+      query.andWhere("ideaTag.id = :tagId", { tagId });
+    }
+
+    query.orderBy("ideas.ideaTitle", "ASC").addOrderBy("ideas.id", "DESC");
+
+    const results = await query.getMany();
+
+    return {
+      statusCode: 200,
+      data: {
+        ideas: results,
       },
     };
   },

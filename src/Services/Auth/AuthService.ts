@@ -17,6 +17,7 @@ export const AuthService = {
       newInnovator.phone = signUpCredentials.phone;
       newInnovator.city = signUpCredentials.city;
       newInnovator.country = signUpCredentials.country;
+      newInnovator.generalInfo = "General Information required";
 
       await AppDataSource.manager.save(newInnovator);
     } else {
@@ -28,6 +29,7 @@ export const AuthService = {
       newInvestor.phone = signUpCredentials.phone;
       newInvestor.city = signUpCredentials.city;
       newInvestor.country = signUpCredentials.country;
+      newInvestor.generalInfo = "General Information required";
 
       await AppDataSource.manager.save(newInvestor);
     }
@@ -88,6 +90,7 @@ export const AuthService = {
     user.phone = updatedUserInfo.phone || user.phone;
     user.city = updatedUserInfo.city || user.city;
     user.country = updatedUserInfo.country || user.country;
+    user.generalInfo = updatedUserInfo.generalInfo || user.generalInfo;
 
     await (updatedUserInfo.role === "investor"
       ? investorRepository.save(user)

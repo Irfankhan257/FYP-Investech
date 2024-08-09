@@ -25,6 +25,9 @@ export class Investor {
   @Column()
   password: string;
 
+  @Column({ default: null })
+  generalInfo: string;
+
   @Column()
   city: string;
 
