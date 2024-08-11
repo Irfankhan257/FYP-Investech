@@ -67,6 +67,43 @@ export const AuthService = {
     };
   },
 
+  getAllInvestors: async () => {
+    const investorRepository = AppDataSource.getRepository(Investor);
+    const investors = await investorRepository.find(); // Fetch all investors
+
+    return {
+      statusCode: investors.length > 0 ? 200 : 404,
+      data:
+        investors.length > 0 ? investors : { message: "No investors found" },
+    };
+  },
+
+  searchInvestors: async (searchTerm: string) => {
+    const investorRepository = AppDataSource.getRepository(Investor);
+
+    const query = investorRepository.createQueryBuilder("investor");
+
+    if (searchTerm) {
+      query.andWhere(
+        "investor.name LIKE :searchTerm OR investor.email LIKE :searchTerm OR investor.generalInfo LIKE :searchTerm",
+        {
+          searchTerm: `%${searchTerm}%`,
+        }
+      );
+    }
+
+    query.orderBy("investor.name", "ASC").addOrderBy("investor.id", "DESC");
+
+    const results = await query.getMany();
+
+    return {
+      statusCode: 200,
+      data: {
+        investors: results,
+      },
+    };
+  },
+
   editUser: async (updatedUserInfo: UserEdit) => {
     const investorRepository = AppDataSource.getRepository(Investor);
     const innovatorRepository = AppDataSource.getRepository(Innovator);

@@ -9,8 +9,8 @@ export const EmailService = {
     port: 587,
     secure: false,
     auth: {
-      user: "zackmarts2738@gmail.com", // your email
-      pass: "vurn cgjb waip qttt", // your app password (format: xxxx xxxx xxxx xxxx)
+      user: "InvesTech27@gmail.com",
+      pass: "jpaz iveo nupo ilmt",
     },
   }) as Transporter,
 
@@ -28,7 +28,7 @@ export const EmailService = {
 
     try {
       const info = await EmailService.transporter.sendMail({
-        from: "zackmarts2738@gmail.com",
+        from: "InvesTech27@gmail.com",
         to,
         subject,
         text,

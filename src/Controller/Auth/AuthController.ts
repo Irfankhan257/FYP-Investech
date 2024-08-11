@@ -110,4 +110,43 @@ export const AuthController = {
       }
     },
   ],
+
+  getAllInvestorsController: [
+    async (req: Request, res: Response) => {
+      try {
+        const response = await AuthService.getAllInvestors();
+        if (response.statusCode === 200) {
+          res.status(200).json(response.data);
+        } else {
+          res.status(404).json(response.data);
+        }
+      } catch (error) {
+        res
+          .status(500)
+          .json({ message: "Internal server error", error: error.message });
+      }
+    },
+  ],
+
+  searchInvestorsController: [
+    async (req: Request, res: Response) => {
+      try {
+        const { searchTerm } = req.query;
+
+        const response = await AuthService.searchInvestors(
+          searchTerm as string
+        );
+
+        if (response.statusCode === 200) {
+          res.status(200).json(response.data);
+        } else {
+          res.status(404).json({ message: "No investors found" });
+        }
+      } catch (error) {
+        res
+          .status(500)
+          .json({ message: "Internal server error", error: error.message });
+      }
+    },
+  ],
 };
